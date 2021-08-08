@@ -21,4 +21,10 @@ class UserController extends Controller
         $result = $this->service->retrievePurchase(intval($id));
         return view('user.index', ['user' => $result]);
     }
+
+    public function register(Request $request)
+    {
+        $name = $request->get('name');
+        $age = $request->get('age');
+    }
 }
