@@ -24,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
                 return new BlowfishEncrypter($this->parseKey($config));
             }
         );
+
+        $this->app->bind(
+            \App\DataProvider\PublisherRepositoryInterface::class,
+            \App\Domain\Repository\PublisherRepository::class,
+        );
     }
 
     protected function parseKey(array $config)
