@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $view = view('welcome');
+    // トップディレクトリアクセス時にイベントを発行する場合
+    \Illuminate\Support\Facades\Event::dispatch(new \App\Events\PublishProcessor(2));
+
+    return $view;
 });
 
 Route::get('/dashboard', function () {
