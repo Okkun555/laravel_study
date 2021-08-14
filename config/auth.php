@@ -36,6 +36,11 @@ return [
     */
 
     'guards' => [
+        'jwt' => [
+            'driver' => 'jwt',
+            'provider' => 'users',
+        ],
+
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -43,8 +48,10 @@ return [
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
-            'hash' => false,
+            'provider' => 'user_token',
+            'input_key' => 't',
+            'storage_key' => 'token',
+            'hash' => true,
         ],
     ],
 
@@ -75,6 +82,9 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'user_token' => [
+            'driver' => 'user_token',
+        ]
     ],
 
     /*
