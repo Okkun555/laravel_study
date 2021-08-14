@@ -6,6 +6,7 @@ use App\BlowfishEncrypter;
 use Illuminate\Encryption\MissingAppKeyException;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Knp\Snappy\Pdf;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
             \App\DataProvider\PublisherRepositoryInterface::class,
             \App\Domain\Repository\PublisherRepository::class,
         );
+
+        $this->app->bind(Pdf::class, function () {
+            return new Pdf('/usr/bin/wkhtmltopdf');
+        });
     }
 
     protected function parseKey(array $config)

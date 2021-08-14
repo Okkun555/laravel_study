@@ -25,4 +25,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('pdf', \App\Http\Controllers\PdfGeneratorAction::class);
+
 require __DIR__.'/auth.php';
